@@ -1,0 +1,275 @@
+<html>
+    <head>
+        <title>MY BABY</title>
+
+        <style>
+            body{
+                padding: 0;
+                margin: 0;
+                height: 100%;
+                overflow: hidden;
+            }
+            .background{
+                position: fixed;
+                inset: 0;
+                background-image: url(images/back1.jpeg);
+                background-size: cover;
+                background-position: center;
+                filter: blur(10px);
+                transform: scale(1.1);
+                z-index: 0;
+            }
+            .intro{
+              position: fixed;
+              inset: 0;
+              z-index: 2;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              color: white;
+              animation: introFade 4s forwards;
+            }
+            
+            .intro h1{
+                font-size: 4rem;
+                text-shadow: 0 0 10px rgb(253, 24, 24), 0 0 6px rgb(253, 24, 24);
+            }
+            
+            @keyframes introFade {
+                0% {
+                    opacity:0;
+                    transform: scale(0.8);
+                }
+                20% {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+                
+                70% {
+                    opacity: 1;
+                }
+                
+                100% {
+                    opacity: 0;
+                    transform: scale(1.1);
+                }
+            }
+            .slideshow{
+                position: fixed;
+                inset: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 3;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 1s ease;
+            }
+            
+        .slideshow.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+            .slide {
+                position: absolute;
+                max-width: 600px;
+                width: 70%;
+                height: 650px;
+                object-fit: cover;
+                border-radius: 10px;
+                opacity: 0;
+                transition: opacity 2s ease-in-out;
+        }
+        .slide.active {
+            opacity: 1;
+        }
+        .textcontainer{
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 100%;
+        }
+        .fade-line{
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 4px 4px 10px rgba(0,0,0,0.9);
+            opacity: 0;
+            margin: 10px;
+            animation: fadeInUp 1s ease forwards;
+        }
+        .fade-line:nth-child(1) {animation-delay: 5.5s;}
+        
+        .fade-line:nth-child(2) {animation-delay: 9.0s;}
+        
+        .fade-line:nth-child(3) {animation-delay: 13.5s;}
+        .fade-line:nth-child(4) {animation-delay: 16.5s;}
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .text-container{
+            z-index: 50;
+            position: relative;
+            padding-top: 70px;
+            margin-top: 100px;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom,rgba(0, 0, 0, 0.9)100%, rgba(0,0,0,0)0%);  
+            overflow-y: auto;
+        }
+        .gallery-btn{
+            background-color: red;
+            border: 1px solid white;
+            width: 70px;
+            height: 40px;
+            color: white;
+        }
+        .gallery-btn:hover
+        {
+            background-color: rgb(84, 5, 5);
+            color: white;
+            border: 1px solid red;
+        }
+        .modal-content {
+            margin: 5% auto;
+            padding: 20px;
+            width: 80%;
+            color: white;
+        }
+
+        .close-btn {
+            font-size: 40px;
+            cursor: pointer;
+            float: right;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding-left: 150px;
+        }
+
+        .grid img { 
+            width: 100%;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+         }
+       .grid img:hover{
+            transform: scale(1.1);
+        }
+        .gal{ 
+            padding: 10px;
+            position: sticky;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+            font-size: 1.4rem;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="background"></div>
+                <div class="intro">
+                    <h1> I &#10084; YOU BABY &#128522; </h1>
+                </div>
+                        <div class="slideshow">
+                            <img src="images/cp1.jpg" class=" slide active" >
+                            
+                            <img src="images/cp2.jpg" class="slide">
+                            
+                            <img src="images/cp3.jpg" class="slide">
+
+                            <img src="images/cp5.jpg" class="slide">
+                            
+                            <img src="images/cp6.jpg" class="slide">
+
+                            <div class="textcontainer">
+                                <p class="fade-line"> Thank You For Being Mine </p>
+                                <p class="fade-line">I Love To Brag About You &#128522; </p>
+                                <p class="fade-line"> Missing Your Handsome Face Already &#128532;</p>
+                                <p class="fade-line">Baby Im Yours &#10083;</p>
+                            
+                                <div class="text-container">
+                                    <button id="openGallery" class="gallery-btn">My Baby</button>
+                                </div>
+                            </div>
+                            
+                            <div id="galleryModal" class="modal">
+                                <div class="modal-content">
+                                    <span class="close-btn">&times;</span>
+                                    <h2>@ARKY&#10084;</h2>
+                                    <div class="grid">
+                                        <img src="images/arky5.jpg"><div class="gal">12 WED 1:49AM <br><br> You make me smile all the time</div>
+
+                                        <img src="images/arky2.jpg"><div class="gal">24 DEC 1:53pm <br><br> You outshined the moon and the stars</div>
+
+                                        <img src="images/arky1.jpg"><div class="gal">FRIDAY 9:39PM <br><br> I want to grow old with you</div>
+
+                                        <img src="images/arky4.jpg"><div class="gal">13 SAT 11:11PM <br><br> I fall more in love with you every day</div>
+                                    </div>
+                                </div>
+                            </div>
+                         
+                        
+            <script>
+                const intro = document.querySelector(".intro");
+                const slideshow = document.querySelector(".slideshow");
+                const slides = document.querySelectorAll(".slide");
+                let index = 0;
+
+                setTimeout(() => {
+                    if (intro)
+                    intro.style.display = "none";
+                    if (slideshow)
+                    slideshow.classList.add("show");
+                 }, 4000);
+
+                setInterval(() => {
+                    console.log("switching to slide index:", index)
+                    
+                    slides[index].classList.remove("active");
+                    index = (index + 1) % slides.length;
+                    slides[index].classList.add("active");
+                }, 3000);
+           
+                const openBtn = document.getElementById("openGallery");
+                const modal = document.getElementById("galleryModal");
+                const closeBtn = document.querySelector(".close-btn");
+
+                openBtn.onclick = function() {
+                    modal.style.display = "block";
+                }
+
+                closeBtn.onclick = function() {
+                    modal.style.display = "none";
+                }
+
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+            </script>
+    </body>
+</html>
